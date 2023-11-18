@@ -1,3 +1,4 @@
+import math
 class Solution(object):
     def isPalindrome(self, x):
         """
@@ -16,25 +17,42 @@ class Solution(object):
     #function for checking without converting to string
     def isPalindromeNum(self, x):
 
-        if x< 0:
+        if x < 0:
             return False
+        elif x >= 0 and x <10:
+            return True
         else:
-            i = 10
-            while i < x: 
-                remainder10 = x % i
-                if remainder10 != 0:
-                    print(remainder10 / (i/10))
-                    x = x - remainder10
-                    #print(i)
-                else:
-                    #print(x / i)
-                    i = i * 10
+            log_num = math.log10(x)
+            int_log_num = int(log_num)
+            power = int_log_num
+
+            i = 1
+            number = x
+            palindrome = 0
+            max = power
+            while i <= power:
+                remainder = number % (10**i)
+                print(remainder)
+                palindrome += (10**(max))*(remainder//(10**(i-1)))
+                print(palindrome)
+                max -= 1
+                number -= remainder
+                #print(i)
+                i += 1
+            print(number//(10**(i-1)))
+            palindrome += number//(10**(i-1))*(10**max)
+            print(palindrome)
+            return x == palindrome
+
+        
+        
+
 
 
 
     
 solution = Solution()
-print(solution.isPalindrome(121))
-print(solution.isPalindrome(-121))
-print(solution.isPalindrome(10))
-solution.isPalindromeNum(12121)
+#print(solution.isPalindrome(121))
+#print(solution.isPalindrome(-121))
+#print(solution.isPalindrome(10))
+print(solution.isPalindromeNum(0000000))
