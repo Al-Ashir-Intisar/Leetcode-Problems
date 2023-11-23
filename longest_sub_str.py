@@ -18,30 +18,31 @@ class Solution(object):
         j = 0
         while j < lenght:
             if character_values[s[j]] == 0:
-                print(s[j])
+                #print(s[j])
                 temp.append(s[j])
                 character_values[s[j]] = 1
                 size = len(temp)
-                print(size)
+                #print(size)
                 if size > max:
                     max = size
                 j += 1
             elif character_values[s[j]] == 1:
                 size = len(temp)
-                print(size)
+                #print(size)
                 if size > max:
                     max = size
                 character_values = {char: 0 for char in all_characters}
                 temp = []
                 size = 0
-                j -= 1
+                i += 1
+                j = i
         if lenght > 0 and max == 0:
             max = lenght
-        print(max)
+        #print(max)
 
 
         # Print the dictionary
-        print(temp)
+        #print(temp)
         #print(character_values)
         return max
 
