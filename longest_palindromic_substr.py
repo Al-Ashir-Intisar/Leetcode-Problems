@@ -10,19 +10,50 @@
 # Output: "bb"
 class Solution(object):
     def longestPalindrome1(self, s):
+        palindrome_right = 0
+        palindrome_left = 0
         palindrome_size = 0
-        palindrome = ""
-        temp = ""
         string_size = len(s)
         if string_size == 0:
-            return None
+            return ""
         elif string_size == 1:
             return s
         else:
-            right = 0
-            left = 0
-            for i in range(string_size):
-                print(s[i])
+            for size in range(string_size+1):
+                #print(s[i])
+                print(size)
+                end = size 
+                bool_pal = 0
+                while end <= string_size:
+                    #print(s[end-size:end])
+                    left = end - size 
+                    right = end - 1
+                    if left == right:
+                        bool_pal = 1
+                    #print(left, right)
+                    while left < right:
+                        if s[left] != s[right]:
+                            bool_pal = 0
+                            left = 0
+                            right = 0
+                        else:
+                            bool_pal = 1
+                            left += 1
+                            right -= 1
+                    if bool_pal == 1:
+                        #print(s[end-size:end], " yes")
+                        if size > palindrome_size:
+                            palindrome_size = size
+                            palindrome_left = end - size
+                            palindrome_right = end
+                        #return s[end-size:end]
+                    end += 1
+            print(s[palindrome_left:palindrome_right])
+            return(s[palindrome_left:palindrome_right])
+            
+
+
+
     def longestPalindrome(self, s: str) -> str:
         def check(i, j):
             left = i
@@ -49,8 +80,8 @@ class Solution(object):
 
 solution = Solution()
 str1 = ""
-str2 = "a"
-str3 = "ab"
-print(solution.longestPalindrome(str1))
-print(solution.longestPalindrome(str2))
-print(solution.longestPalindrome(str3))
+str2 = "ab"
+str3 = "abaaaa"
+#print(solution.longestPalindrome(str1))
+#print(solution.longestPalindrome(str2))
+solution.longestPalindrome1(str3)
