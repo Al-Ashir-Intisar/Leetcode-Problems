@@ -1,4 +1,17 @@
-for length in range(5, 0, -1):
-    print(length)
-    for start in range(5 - length + 1):
-        print(start, start + length)
+class Solution(object):
+    def isMatch(self, text, pattern):
+        if not pattern:
+            return not text
+
+        first_match = bool(text) and pattern[0] in {text[0], '.'}
+
+        if len(pattern) >= 2 and pattern[1] == '*':
+            return (self.isMatch(text, pattern[2:]) or
+                    first_match and self.isMatch(text[1:], pattern))
+        else:
+            return first_match and self.isMatch(text[1:], pattern[1:])
+        
+
+solve = Solution()
+solution = solve.isMatch("aacdck", "a*.*b*cd*")
+print(solution)
