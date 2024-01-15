@@ -1,17 +1,7 @@
-class Solution(object):
-    def isMatch(self, text, pattern):
-        if not pattern:
-            return not text
+from math import comb
 
-        first_match = bool(text) and pattern[0] in {text[0], '.'}
+n = 3000
+k = 3
 
-        if len(pattern) >= 2 and pattern[1] == '*':
-            return (self.isMatch(text, pattern[2:]) or
-                    first_match and self.isMatch(text[1:], pattern))
-        else:
-            return first_match and self.isMatch(text[1:], pattern[1:])
-        
-
-solve = Solution()
-solution = solve.isMatch("aacdck", "a*.*b*cd*")
-print(solution)
+num_combinations = comb(n, k)
+print("Number of combinations:", num_combinations)
